@@ -14,7 +14,7 @@ and open the template in the editor.
         require "classes\UserLang.class.php";
 
         $obj = new UserLang('sitelang', 3600);
-        echo $obj->get() . '<br>';
+        $_SESSION['userlang'] = $obj->get();
         ?>  
     </body>
 </html>

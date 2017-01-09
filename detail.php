@@ -27,30 +27,12 @@ and open the template in the editor.
         ?>
     </head>
     <body>
-        <header class="header">
-            <table> 
-                <tr>
-                    <td>Home</td>
-                    <td>Information</td>
-                    <td>Forex Study</td>
-                    <td>Experience</td>
-                    <td>About me</td>
-                </tr>
-            </table>
-         </header>
-        <div id="left">
-            <div id="price_box">
-                <ul></ul>
-                <span id="refresh_time"></span>
-            </div>
-            <ul>
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-            </ul>
-        </div>
+        <?php
+          include "head.html";
+          include "left.html";
+          include "footer.html";
+        ?>
+        
         <article class="content">
             
             <div class="content_title">
@@ -65,15 +47,7 @@ and open the template in the editor.
             </div>
         </article>
         
-        <footer>
-            <ul>
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-            </ul>
-        </footer>
+        
         <script> 
                 //$( "#price_box" ).css( "border", "3px solid red" );
                 //var url = "js/test.js";
