@@ -50,6 +50,12 @@ ul span {
 .arrow_none{
     
 }
+.tooltip {
+    display:none;
+    width:200px;
+    height:300px;
+    background-color: #e0a391;
+}
 #left li{
     
     margin-top:5px;

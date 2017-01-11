@@ -32,16 +32,31 @@ and open the template in the editor.
           include "left.html";
           include "footer.html";
         ?>
-        
+        <div class="tooltip"></div>
         <article class="content">
             
             <div class="content_title">
                 <h1>
                     <?php echo $title ?>
                 </h1>
+                
                 <h5><?php echo $post_date ?></h5>
             </div>
-            
+            <script>
+              $(".content_title").hover(function(ein){
+                $('.content_title').css("color:red");
+                var tooltip = $('.tooltip');
+                tooltip.css("display","block");
+                tooltip.css("position","absolute");
+                tooltip.text("hahahahahaah");
+                tooltip.css("left", ein.clientX);
+                tooltip.css("top",ein.clientY);
+              }, function(eout){
+                $('.content_title').css("color:none");
+                var tooltip = $('.tooltip');
+                tooltip.css("display","none");
+              })
+              </script>
             <div class="content_body">
                 <?php echo $content ?>
             </div>
@@ -72,7 +87,7 @@ and open the template in the editor.
                         
                         var values ='';
                         currs.forEach(function(e){
-                            var item = eval("hq_str_"+ e);
+                            var item = window["hq_str_"+ e];
                             item = item.split(',');
                             if(currs["hq_str_"+ e]>item[1]) {
                                 cl="green";
