@@ -1,93 +1,47 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
+
     <head>
         <meta charset="UTF-8">
-        <title>Blog</title>
+        <title>List all posts</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"  href="../css/global.css" />
-        <script src="../js/jquery-1.10.2.js"></script>
-        <?php
-          
-          
-        ?>
+        <link rel="stylesheet"  href="/html5-astral/css/global.css"></link>
+        <script src="/html5-astral/js/forex.js"></script>
+        <script src="/html5-astral/js/jquery-1.11.1.min.js"></script>
     </head>
+
     <body>
         <?php
-          include "../head.html";
-          include "../left.html";
-          include "../footer.html";
-          $post_date = date('Y/m/d');
+        include "../common/head.html";
+        include "../common/left.html";
+        require "itemList.php";
+        $post_date = date('Y/m/d');
         ?>
         <div class="tooltip"></div>
         <article class="content">
-            
-            <div class="content_title">
-                <h1>
-                    Strategy for <?php echo  $post_date ?>
-                </h1>
-                
-                <h5><?php echo $post_date ?></h5>
-            </div>
-            
+            <div class="tooltip"></div>
             <div class="content_body">
-                <?php include "strategy_1.php"; ?>
+                <table class="items">
+                    <tr>
+                        <th>Item</th>
+                        <th>Direction</th>
+                        <th>Entry</th>
+                        <th>Stop loss</th>
+                        <th>Target profit 1</th>
+                        <th>Target profit 2</th>
+                        <th>Term</th>
+                        <?php #itemSelection(); ?>
+                    </tr>
+                </table>
+
+                <input type="button" value="Post Strategy" class='poststrategy'></input>
             </div>
+            <script>
+              $('.poststrategy').on('click', function (event) {
+                  $.post('../test.php', {name: '123123123123'});
+              });
+            </script>
         </article>
-        
-        
-        <script> 
-                //$( "#price_box" ).css( "border", "3px solid red" );
-                //var url = "js/test.js";
-                
-                var priceList = {};
-                var list = "fx_seurusd,fx_sgbpusd,fx_susdjpy,fx_saudusd,fx_susdchf,fx_susdcad,fx_snzdusd,fx_susdhkd,fx_susdrub,fx_susdkrw,fx_susdthb,fx_susdsgd";
-                var currs = list.split(',');
-                currs.forEach(function(e){
-                    priceList["hq_str_"+e] = "";
-                });
-                var cl = 'red';
-                getPrice();
-                setInterval("getPrice()", 3000);  
-                function getPrice(){
-                   $.ajaxSetup({ cache: true ,processData: false});
-                    var timestamp = new Date();
-                    
-                    var url = "http://hq.sinajs.cn/rn="+timestamp.getTime()
-                              +"?list="+list;
-                    var arrow = "";
-                    $.get(url, function(){                    
-                        
-                        var values ='';
-                        currs.forEach(function(e){
-                            var item = window["hq_str_"+ e];
-                            item = item.split(',');
-                            if(currs["hq_str_"+ e]>item[1]) {
-                                cl="green";
-                                arrow = "arrow_down";
-                            } else if(currs["hq_str_"+ e]==item[1]) {
-                                cl="black";
-                                arrow = "arrow_none";
-                            } else {
-                                arrow = "arrow_up";
-                                cl='red';
-                            }
-                            currs["hq_str_"+ e] = item[1];
-                            
-                            values += ('<li style="color:[cl]">'.replace("[cl]",cl) + "<span class='[arrow]'></span>".replace('[arrow]', arrow) +item[9].replace('即期汇率','')+ ':' + item[1] + '</li>');
-                        })
-
-                        $( "#price_box ul" ).html(values);
-                        $( "#price_box #refresh_time").html("refresh time: <br />" + timestamp.toLocaleString());
-
-                        //$( "#price_box" ).css( "border", "3px solid red" );
-                    },'script'); 
-                }
-                
-              </script>
+        <?php //include "../common/footer.html"; ?>
     </body>
 </html>
+

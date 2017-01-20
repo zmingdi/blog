@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"  href="css/global.css" />
+        <link rel="stylesheet"  href="/html5-astral/css/global.css" />
 
     </head>
     <body>
@@ -19,9 +19,16 @@ and open the template in the editor.
                 <li>footer</li> 
                 <li>footer</li> 
                 <li>footer</li> 
-                <li>footer</li> 
+                <li><a href="#">Create Strategy</a><hidden value="forex/strategy.php" ></hidden></li> 
             </ul>
         </footer>
+        <script>
+            $('footer a').on("click", function(){
+                
+                var url = $(this).siblings("hidden").attr("value");
+                window.location.href=url;
 
+            });
+        </script>
     </body>
 </html>

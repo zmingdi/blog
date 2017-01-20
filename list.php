@@ -12,29 +12,13 @@ and open the template in the editor.
         <link rel="stylesheet"  href="css/global.css" />
     </head>
     <body>
-        <header class="header">
-            <table> 
-                <tr>
-                    <td>Home</td>
-                    <td>Information</td>
-                    <td>Forex Study</td>
-                    <td>Experience</td>
-                    <td>About me</td>
-                </tr>
-            </table>
-         </header>
-        <div id="left">
-            <div id="price_box">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-            </div>
-            <ul>
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-            </ul>
-        </div>
+        <?php
+          include "common/head.html";
+          include "common/left.html";
+          include "common/footer.html";
+          $post_date = date('Y/m/d');
+        ?>
+        <div class="tooltip"></div>
         <article class="content">
             
             <div class="content_title">
@@ -63,14 +47,6 @@ and open the template in the editor.
             </div>
         </article>
         
-        <footer>
-            <ul>
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-            </ul>
-        </footer>
+        <?php include "common/footer.html"; ?>
     </body>
 </html>
