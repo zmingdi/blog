@@ -30,7 +30,7 @@ and open the template in the editor.
         <?php
           include "common/head.html";
           include "common/left.html";
-          
+          include "common/footer.html";
         ?>
         <div class="tooltip"></div>
         <article class="content">
@@ -63,6 +63,6 @@ and open the template in the editor.
         </article>
         
         
-        <?php include "common/footer.html"; ?>
+        
     </body>
 </html>

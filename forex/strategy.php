@@ -29,19 +29,17 @@
                         <th>Target profit 1</th>
                         <th>Target profit 2</th>
                         <th>Term</th>
-                        <?php #itemSelection(); ?>
+                        <?php itemSelection(); ?>
                     </tr>
                 </table>
 
                 <input type="button" value="Post Strategy" class='poststrategy'></input>
             </div>
             <script>
-              $('.poststrategy').on('click', function (event) {
-                  $.post('../test.php', {name: '123123123123'});
-              });
+              $('.poststrategy').on('click', postStrategy);
             </script>
         </article>
-        <?php //include "../common/footer.html"; ?>
+        <?php include "../common/footer.html"; ?>
     </body>
 </html>
 

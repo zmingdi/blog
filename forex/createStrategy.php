@@ -12,8 +12,9 @@ and open the template in the editor.
     <body>
         <?php
         include "../dbconn/DBConn.php";
-        #$items = $_POST["name"];
-        echo var_dump($_POST);
+        include "Constants.php";
+        $items = $_POST["dat"];
+        //echo var_dump($_POST);
         
         $conn = new DBConn();
         $mysqli = $conn->getBlogConn();
@@ -23,10 +24,11 @@ and open the template in the editor.
           if(!$item->entry) {
             continue;
           }
+          $itm=Constants::ITEMS[$item->item];
           //echo 'item = ' . $item;
           //INSERT INTO `forex_strategy`(`id`, `date`, `item`, `direction`, `entry`, `sl`, `tp1`, `tp2`, `term`, `result`, `entry_time`, `unload_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12])
           $sql="insert into `forex_strategy` (`date`, `item`, `direction`, `entry`, `sl`, `tp1`, `tp2`, `term`) "
-                  . "values ('$date','$item->item', '$date','$item->direction','$item->entry','$item->sl','$item->tp1','$item->tp2','$item->term')";
+                  . "values ('$date','$itm', '$item->direction','$item->entry','$item->sl','$item->tp1','$item->tp2','$item->term')";
           echo $sql;
           $mysqli->query($sql);
         }

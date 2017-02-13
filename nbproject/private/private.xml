@@ -5,9 +5,15 @@
         <group>
             <file>file:/C:/xampp/htdocs/html5-astral/forex/strategy.php</file>
             <file>file:/C:/xampp/htdocs/html5-astral/dbconn/DBConn.php</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/list.php</file>
             <file>file:/C:/xampp/htdocs/html5-astral/detail.php</file>
             <file>file:/C:/xampp/htdocs/html5-astral/forex/createStrategy.php</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/forex/listStrategy.php</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/common/head.html</file>
             <file>file:/C:/xampp/htdocs/html5-astral/forex/itemList.php</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/common/footer.html</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/forex/Constants.php</file>
+            <file>file:/C:/xampp/htdocs/html5-astral/forex/strategy_1.php</file>
             <file>file:/C:/xampp/htdocs/html5-astral/post.php</file>
         </group>
     </open-files>

@@ -27,7 +27,7 @@ and open the template in the editor.
         });
         </script>
         <?php
-          include "dbconn/DBConn.php";
+          include "/html5-astral/dbconn/DBConn.php";
           $conn = new DBConn();
           $mysqli = $conn->getBlogConn();
           $first_sql="INSERT INTO `posts` () values ()";
@@ -36,29 +36,11 @@ and open the template in the editor.
         ?>
     </head>
     <body>
-        <header class="header">
-            <table> 
-                <tr>
-                    <td>Home</td>
-                    <td>Information</td>
-                    <td>Forex Study</td>
-                    <td>Experience</td>
-                    <td>About me</td>
-                </tr>
-            </table>
-         </header>
-        <div id="left">
-            <div id="price_box">
-                <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</a>
-            </div>
-            <ul>
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-                <li>Information</li>  
-            </ul>
-        </div>
+       <?php
+          include __DIR__ . '/common/head.html';
+          include __DIR__ . '/common/left.html';
+          
+        ?>
         <article class="content">
             <form method="POST" action="post.php">
               <input type="hidden" name="post_id" value="<?php echo $post_id ?>" />
@@ -72,15 +54,6 @@ and open the template in the editor.
               
             </form>
         </article>
-        
-        <footer>
-            <ul>
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-                <li>footer</li> 
-            </ul>
-        </footer>
+        <?php include __DIR__ . '/common/footer.html'; ?>
     </body>
 </html>

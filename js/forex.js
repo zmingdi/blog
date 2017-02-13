@@ -8,7 +8,7 @@
 
 function loadPriceBox() {
     var priceList = {};
-    var list = "fx_seurusd,fx_sgbpusd,fx_susdjpy,fx_saudusd,fx_susdchf,fx_susdcad,fx_snzdusd,fx_susdhkd,fx_susdrub,fx_susdkrw,fx_susdthb,fx_susdsgd";
+    var list = "fx_seurusd,fx_sgbpusd,fx_susdjpy,fx_saudusd,fx_susdchf,fx_susdcad,fx_snzdusd";
     var currs = list.split(',');
     currs.forEach(function (e) {
         priceList["hq_str_" + e] = "";
@@ -16,41 +16,46 @@ function loadPriceBox() {
     var cl = 'red';
     var getPrice = function () {
 
-        //$.ajaxSetup({cache: true, processData: false});
+        $.ajaxSetup({cache: true, processData: false});
         var timestamp = new Date();
 
-        var url = "http://hq.sinajs.cn/rn=" + timestamp.getTime()
-                + "?list=" + list;
+        var url = "http://hq.sinajs.cn/rn=" + timestamp.getTime() + "?list=" + list;
         var arrow = "";
-        $.get(url, function () {
+        
+        $.ajax({url: url
+            , cache: true
+            , processData:false
+            , success: function () {
 
-            var values = '';
-            currs.forEach(function (e) {
-                var item = window["hq_str_" + e];
-                item = item.split(',');
-                if (currs["hq_str_" + e] > item[1]) {
-                    cl = "green";
-                    arrow = "arrow_down";
-                } else if (currs["hq_str_" + e] == item[1]) {
-                    cl = "black";
-                    arrow = "arrow_none";
-                } else {
-                    arrow = "arrow_up";
-                    cl = 'red';
-                }
-                currs["hq_str_" + e] = item[1];
+                var values = '';
+                currs.forEach(function (e) {
+                    var item = window["hq_str_" + e];
+                    item = item.split(',');
+                    if (currs["hq_str_" + e] > item[1]) {
+                        cl = "green";
+                        arrow = "arrow_down";
+                    } else if (currs["hq_str_" + e] == item[1]) {
+                        cl = "black";
+                        arrow = "arrow_none";
+                    } else {
+                        arrow = "arrow_up";
+                        cl = 'red';
+                    }
+                    currs["hq_str_" + e] = item[1];
 
-                values += ('<li style="color:[cl]">'.replace("[cl]", cl) + "<span class='[arrow]'></span>".replace('[arrow]', arrow) + item[9].replace('即期汇率', '') + ':' + item[1] + '</li>');
-            })
+                    values += ('<li style="color:[cl]">'.replace("[cl]", cl) + "<span class='[arrow]'></span>".replace('[arrow]', arrow) + item[9].replace('即期汇率', '') + ':' + item[1] + '</li>');
+                })
 
-            $("#price_box ul").html(values);
-            $("#price_box #refresh_time").html("refresh time: <br />" + timestamp.toLocaleString());
+                $("#price_box ul").html(values);
+                $("#price_box #refresh_time").html("refresh time: <br />" + timestamp.toLocaleString());
 
-            //$( "#price_box" ).css( "border", "3px solid red" );
-        }, 'script');
+                //$( "#price_box" ).css( "border", "3px solid red" );
+            }, 
+            dataType:'script'});
+        
     }
     getPrice();
-    setInterval(getPrice, 30000);
+    setInterval(getPrice, 10000);
 }
 
 
@@ -75,10 +80,12 @@ function postStrategy() {
         item['term'] = $(terms[i]).val();
         d.push(JSON.stringify(item));
     }
-    var dat = {name: 'ddd'};
+    var dat = {dat: d};
     //$.post('test.php', $(".strategy").serialize());
-    $.post('test.php', {
-        name: "Donald Duck",
-        city: "Duckburg"
-    });
+    $.ajax({url: 'createStrategy.php'
+            , data: dat
+            , method: "POST"
+            , cache: false
+            , processData: true
+            , dataType:"json"});
 }

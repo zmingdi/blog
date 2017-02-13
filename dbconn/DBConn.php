@@ -16,7 +16,7 @@ class DBConn {
   function getBlogConn(){
     $mysqli = new mysqli("localhost", "root", "", "blog");
     if($mysqli->connect_errno){
-        echo "failed to connect to mysql:" . $mysqli->connect_errno . ", " . $mysqli->connect_error;
+        echo "failed to connect to mysql:" . $mysqli->connect_errno ;
         return null;
     } else {
       return $mysqli;
