@@ -10,7 +10,7 @@ and open the template in the editor.
         <title>Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"  href="css/global.css" />
-        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
         <?php
           include "dbconn/DBConn.php";
           $conn = new DBConn();
@@ -36,11 +36,9 @@ and open the template in the editor.
         <article class="content">
             
             <div class="content_title">
-                <h1>
-                    <?php echo $title ?>
-                </h1>
+                <h1><?php echo $title ?></h1>
+                <span><?php echo $post_date ?></span><span>Edit</span><span>Delete</span>
                 
-                <h5><?php echo $post_date ?></h5>
             </div>
             <script>
               $(".content_title").hover(function(ein){

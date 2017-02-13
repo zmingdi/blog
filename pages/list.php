@@ -10,7 +10,7 @@ and open the template in the editor.
           include "dbconn/DBConn.php";
           $dbconn = new DBConn();
           $mysqli = $dbconn->getBlogConn();
-          $sql = $sql = "SELECT post_id, title, post_date FROM `posts` where title != ''";
+          $sql = $sql = "SELECT post_id, title, post_date FROM `posts` where title != '' order by post_date desc";
           $result=$mysqli->query($sql);
           while($row=$result->fetch_array()){
             echo "<li>";

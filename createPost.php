@@ -27,7 +27,7 @@ and open the template in the editor.
         });
         </script>
         <?php
-          include "/html5-astral/dbconn/DBConn.php";
+          include "dbconn/DBConn.php";
           $conn = new DBConn();
           $mysqli = $conn->getBlogConn();
           $first_sql="INSERT INTO `posts` () values ()";
