@@ -11,6 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"  href="css/global.css" />
         <script src="js/jquery-1.11.1.min.js"></script>
+        
         <?php
           include "dbconn/DBConn.php";
           $conn = new DBConn();
@@ -25,6 +26,24 @@ and open the template in the editor.
           }
           
         ?>
+        <script>
+          function deletePost(post_id){
+            
+            $.ajax({url: "pages/deletePost.php", data:{'post_id':post_id},  method: 'POST', cache:false
+              , processData:true
+              , dataType:'json'
+              , statusCode: {
+                  400: function() {
+                    alert( "page not found" );
+                  }
+                  , 200 : function(){
+                    alert("Post deleted. id = " + post_id);
+                    window.location = "/html5-astral/";
+                  }
+                }
+              });
+          }
+        </script>
     </head>
     <body>
         <?php
@@ -37,10 +56,10 @@ and open the template in the editor.
             
             <div class="content_title">
                 <h1><?php echo $title ?></h1>
-                <span><?php echo $post_date ?></span><span>Edit</span><span>Delete</span>
+                <span><?php echo $post_date ?></span><span>Edit</span><span><a href="#"  onclick="deletePost(<?php echo $post_id ?>)">Delete</a></span>
                 
             </div>
-            <script>
+            <!--script>
               $(".content_title").hover(function(ein){
                 $('.content_title').css("color:red");
                 var tooltip = $('.tooltip');
@@ -54,7 +73,7 @@ and open the template in the editor.
                 var tooltip = $('.tooltip');
                 tooltip.css("display","none");
               });
-              </script>
+              </script--!>
             <div class="content_body">
                 <?php echo $content ?>
             </div>

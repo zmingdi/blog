@@ -5,6 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 
+<h1>Recent Post</h1>
 <ul>
         <?php
           include "dbconn/DBConn.php";
