@@ -27,12 +27,26 @@ and open the template in the editor.
         });
         </script>
         <?php
+          $post_id=0;
+          $content='';
+          $title='';
           include "dbconn/DBConn.php";
           $conn = new DBConn();
           $mysqli = $conn->getBlogConn();
-          $first_sql="INSERT INTO `posts` () values ()";
-          $mysqli->query($first_sql);
-          $post_id=mysqli_insert_id($mysqli);
+          if(isset($_GET['post_id'])) {
+            $post_id=$_GET['post_id'];
+            $sql="select * from `posts` where post_id='$post_id'";
+            $result = $mysqli->query($sql);
+            while($row=$result->fetch_array()){
+              $title=$row["title"];
+              $content=$row['content'];
+            }
+          } else {
+            $first_sql="INSERT INTO `posts` () values ()";
+            $mysqli->query($first_sql);
+            $post_id=mysqli_insert_id($mysqli);
+          }
+          
         ?>
     </head>
     <body>
@@ -45,10 +59,10 @@ and open the template in the editor.
             <form method="POST" action="post.php">
               <input type="hidden" name="post_id" value="<?php echo $post_id ?>" />
               <div class="content_title">
-                  <input type="text" name ="title" placeholder="Input your blog title" />    
+                  <input type="text" name ="title" placeholder="Input your blog title" value="<?php echo $title ?>"/>    
               </div>
               <div class="content_body">
-                  <textarea name="content" placeholder="Input your blog content"></textarea>
+                  <textarea name="content" placeholder="Input your blog content"> <?php echo $content ?></textarea>
                   <input type="submit" value="save" /> 
               </div>
               

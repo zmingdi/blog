@@ -11,6 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet"  href="css/global.css" />
         <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/post.js"></script>
         
         <?php
           include "dbconn/DBConn.php";
@@ -26,24 +27,7 @@ and open the template in the editor.
           }
           
         ?>
-        <script>
-          function deletePost(post_id){
-            
-            $.ajax({url: "pages/deletePost.php", data:{'post_id':post_id},  method: 'POST', cache:false
-              , processData:true
-              , dataType:'json'
-              , statusCode: {
-                  400: function() {
-                    alert( "page not found" );
-                  }
-                  , 200 : function(){
-                    alert("Post deleted. id = " + post_id);
-                    window.location = "/html5-astral/";
-                  }
-                }
-              });
-          }
-        </script>
+       
     </head>
     <body>
         <?php
@@ -56,7 +40,9 @@ and open the template in the editor.
             
             <div class="content_title">
                 <h1><?php echo $title ?></h1>
-                <span><?php echo $post_date ?></span><span>Edit</span><span><a href="#"  onclick="deletePost(<?php echo $post_id ?>)">Delete</a></span>
+                <span><?php echo $post_date ?></span>
+                <span><a href="#"  onclick="editPost(<?php echo $post_id ?>)">Edit</a></span>
+                <span><a href="#"  onclick="deletePost(<?php echo $post_id ?>)">Delete</a></span>
                 
             </div>
             <!--script>
